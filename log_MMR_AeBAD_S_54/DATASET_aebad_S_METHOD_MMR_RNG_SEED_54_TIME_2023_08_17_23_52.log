@@ -1,0 +1,285 @@
+[08/17 23:52:56][INFO] main.py:   27: {'DATASET': {'domain_shift_category': 'same',
+             'imagesize': 224,
+             'name': 'aebad_S',
+             'resize': 256,
+             'subdatasets': ['AeBAD_S']},
+ 'NUM_GPUS': 1,
+ 'OUTPUT_DIR': './log_MMR_AeBAD_S_54',
+ 'RNG_SEED': 54,
+ 'TEST': {'VISUALIZE': CfgNode({'Random_sample': True, 'Sample_num': 40}),
+          'dataset_path': './usr/AeBAD',
+          'enable': False,
+          'method': 'MMR',
+          'pixel_mode_verify': True,
+          'save_segmentation_images': True,
+          'save_video_segmentation_images': False},
+ 'TEST_SETUPS': CfgNode({'batch_size': 32}),
+ 'TRAIN': {'MMR': {'DA_low_limit': 0.7,
+                   'DA_up_limit': 1.0,
+                   'FPN_output_dim': (256, 512, 1024),
+                   'feature_compression': False,
+                   'finetune_mask_ratio': 0.4,
+                   'layers_to_extract_from': ['layer1', 'layer2', 'layer3'],
+                   'load_pretrain_model': True,
+                   'model_chkpt': './low_level_anomaly_detection/mae_visualize_vit_base.pth',
+                   'scale_factors': (4.0, 2.0, 1.0),
+                   'test_mask_ratio': 0.0},
+           'backbone': 'wideresnet50',
+           'dataset_path': './usr/AeBAD',
+           'enable': True,
+           'method': 'MMR',
+           'save_model': False},
+ 'TRAIN_SETUPS': {'batch_size': 16,
+                  'epochs': 200,
+                  'learning_rate': 0.001,
+                  'num_workers': 8,
+                  'warmup_epochs': 50,
+                  'weight_decay': 0.05}}
+[08/17 23:52:56][INFO] main.py:   28: path_to_config is method_config/AeBAD_S/MMR.yaml
+[08/17 23:52:56][INFO] main.py:   32: start training!
+[08/17 23:52:56][INFO] train.py:   32: load dataset!
+[08/17 23:52:56][INFO] train.py:   60: current individual_dataloader is aebad_S_AeBAD_S.
+[08/17 23:52:56][INFO] train.py:   61: the data in current individual_dataloader aebad_S_AeBAD_S are 521.
+[08/17 23:52:59][INFO] train.py:   79: train the decoder FPN of MMR from scratch!
+[08/17 23:52:59][INFO] train.py:   82: MAE load meg: _IncompatibleKeys(missing_keys=['decoder_FPN_mask_token', 'decoder_FPN_pos_embed', 'simfp_2.0.weight', 'simfp_2.0.bias', 'simfp_2.1.weight', 'simfp_2.1.bias', 'simfp_2.3.weight', 'simfp_2.3.bias', 'simfp_2.4.weight', 'simfp_2.4.norm.weight', 'simfp_2.4.norm.bias', 'simfp_2.5.weight', 'simfp_2.5.norm.weight', 'simfp_2.5.norm.bias', 'simfp_3.0.weight', 'simfp_3.0.bias', 'simfp_3.1.weight', 'simfp_3.1.norm.weight', 'simfp_3.1.norm.bias', 'simfp_3.2.weight', 'simfp_3.2.norm.weight', 'simfp_3.2.norm.bias', 'simfp_4.0.weight', 'simfp_4.0.norm.weight', 'simfp_4.0.norm.bias', 'simfp_4.1.weight', 'simfp_4.1.norm.weight', 'simfp_4.1.norm.bias'], unexpected_keys=[])
+[08/17 23:53:14][INFO] MMR_pipeline.py:   76: epoch [1/200], loss:3.0128
+[08/17 23:53:25][INFO] MMR_pipeline.py:   76: epoch [2/200], loss:2.0431
+[08/17 23:53:35][INFO] MMR_pipeline.py:   76: epoch [3/200], loss:1.4546
+[08/17 23:53:45][INFO] MMR_pipeline.py:   76: epoch [4/200], loss:1.3442
+[08/17 23:53:55][INFO] MMR_pipeline.py:   76: epoch [5/200], loss:1.2519
+[08/17 23:54:05][INFO] MMR_pipeline.py:   76: epoch [6/200], loss:1.1766
+[08/17 23:54:16][INFO] MMR_pipeline.py:   76: epoch [7/200], loss:1.1163
+[08/17 23:54:26][INFO] MMR_pipeline.py:   76: epoch [8/200], loss:1.0683
+[08/17 23:54:36][INFO] MMR_pipeline.py:   76: epoch [9/200], loss:1.0270
+[08/17 23:54:46][INFO] MMR_pipeline.py:   76: epoch [10/200], loss:0.9922
+[08/17 23:54:56][INFO] MMR_pipeline.py:   76: epoch [11/200], loss:0.9577
+[08/17 23:55:06][INFO] MMR_pipeline.py:   76: epoch [12/200], loss:0.9264
+[08/17 23:55:16][INFO] MMR_pipeline.py:   76: epoch [13/200], loss:0.8925
+[08/17 23:55:26][INFO] MMR_pipeline.py:   76: epoch [14/200], loss:0.8625
+[08/17 23:55:37][INFO] MMR_pipeline.py:   76: epoch [15/200], loss:0.8296
+[08/17 23:55:47][INFO] MMR_pipeline.py:   76: epoch [16/200], loss:0.8015
+[08/17 23:55:57][INFO] MMR_pipeline.py:   76: epoch [17/200], loss:0.7680
+[08/17 23:56:07][INFO] MMR_pipeline.py:   76: epoch [18/200], loss:0.7376
+[08/17 23:56:17][INFO] MMR_pipeline.py:   76: epoch [19/200], loss:0.7090
+[08/17 23:56:27][INFO] MMR_pipeline.py:   76: epoch [20/200], loss:0.6789
+[08/17 23:56:37][INFO] MMR_pipeline.py:   76: epoch [21/200], loss:0.6483
+[08/17 23:56:48][INFO] MMR_pipeline.py:   76: epoch [22/200], loss:0.6193
+[08/17 23:56:58][INFO] MMR_pipeline.py:   76: epoch [23/200], loss:0.5888
+[08/17 23:57:08][INFO] MMR_pipeline.py:   76: epoch [24/200], loss:0.5610
+[08/17 23:57:18][INFO] MMR_pipeline.py:   76: epoch [25/200], loss:0.5325
+[08/17 23:57:28][INFO] MMR_pipeline.py:   76: epoch [26/200], loss:0.5047
+[08/17 23:57:39][INFO] MMR_pipeline.py:   76: epoch [27/200], loss:0.4771
+[08/17 23:57:49][INFO] MMR_pipeline.py:   76: epoch [28/200], loss:0.4514
+[08/17 23:57:59][INFO] MMR_pipeline.py:   76: epoch [29/200], loss:0.4276
+[08/17 23:58:09][INFO] MMR_pipeline.py:   76: epoch [30/200], loss:0.4039
+[08/17 23:58:19][INFO] MMR_pipeline.py:   76: epoch [31/200], loss:0.3827
+[08/17 23:58:29][INFO] MMR_pipeline.py:   76: epoch [32/200], loss:0.3620
+[08/17 23:58:39][INFO] MMR_pipeline.py:   76: epoch [33/200], loss:0.3407
+[08/17 23:58:50][INFO] MMR_pipeline.py:   76: epoch [34/200], loss:0.3243
+[08/17 23:59:00][INFO] MMR_pipeline.py:   76: epoch [35/200], loss:0.3086
+[08/17 23:59:11][INFO] MMR_pipeline.py:   76: epoch [36/200], loss:0.2955
+[08/17 23:59:20][INFO] MMR_pipeline.py:   76: epoch [37/200], loss:0.2816
+[08/17 23:59:30][INFO] MMR_pipeline.py:   76: epoch [38/200], loss:0.2713
+[08/17 23:59:41][INFO] MMR_pipeline.py:   76: epoch [39/200], loss:0.2638
+[08/17 23:59:51][INFO] MMR_pipeline.py:   76: epoch [40/200], loss:0.2560
+[08/18 00:00:02][INFO] MMR_pipeline.py:   76: epoch [41/200], loss:0.2508
+[08/18 00:00:12][INFO] MMR_pipeline.py:   76: epoch [42/200], loss:0.2468
+[08/18 00:00:23][INFO] MMR_pipeline.py:   76: epoch [43/200], loss:0.2444
+[08/18 00:00:33][INFO] MMR_pipeline.py:   76: epoch [44/200], loss:0.2419
+[08/18 00:00:43][INFO] MMR_pipeline.py:   76: epoch [45/200], loss:0.2410
+[08/18 00:00:53][INFO] MMR_pipeline.py:   76: epoch [46/200], loss:0.2384
+[08/18 00:01:04][INFO] MMR_pipeline.py:   76: epoch [47/200], loss:0.2381
+[08/18 00:01:14][INFO] MMR_pipeline.py:   76: epoch [48/200], loss:0.2379
+[08/18 00:01:25][INFO] MMR_pipeline.py:   76: epoch [49/200], loss:0.2361
+[08/18 00:01:25][INFO] MMR_pipeline.py:   49: current lr is 0.00098
+[08/18 00:01:35][INFO] MMR_pipeline.py:   76: epoch [50/200], loss:0.2368
+[08/18 00:01:45][INFO] MMR_pipeline.py:   76: epoch [51/200], loss:0.2361
+[08/18 00:01:55][INFO] MMR_pipeline.py:   76: epoch [52/200], loss:0.2333
+[08/18 00:02:06][INFO] MMR_pipeline.py:   76: epoch [53/200], loss:0.2328
+[08/18 00:02:17][INFO] MMR_pipeline.py:   76: epoch [54/200], loss:0.2325
+[08/18 00:02:27][INFO] MMR_pipeline.py:   76: epoch [55/200], loss:0.2311
+[08/18 00:02:38][INFO] MMR_pipeline.py:   76: epoch [56/200], loss:0.2304
+[08/18 00:02:49][INFO] MMR_pipeline.py:   76: epoch [57/200], loss:0.2297
+[08/18 00:02:59][INFO] MMR_pipeline.py:   76: epoch [58/200], loss:0.2279
+[08/18 00:03:09][INFO] MMR_pipeline.py:   76: epoch [59/200], loss:0.2269
+[08/18 00:03:19][INFO] MMR_pipeline.py:   76: epoch [60/200], loss:0.2261
+[08/18 00:03:29][INFO] MMR_pipeline.py:   76: epoch [61/200], loss:0.2241
+[08/18 00:03:40][INFO] MMR_pipeline.py:   76: epoch [62/200], loss:0.2241
+[08/18 00:03:50][INFO] MMR_pipeline.py:   76: epoch [63/200], loss:0.2229
+[08/18 00:04:00][INFO] MMR_pipeline.py:   76: epoch [64/200], loss:0.2216
+[08/18 00:04:11][INFO] MMR_pipeline.py:   76: epoch [65/200], loss:0.2217
+[08/18 00:04:21][INFO] MMR_pipeline.py:   76: epoch [66/200], loss:0.2201
+[08/18 00:04:32][INFO] MMR_pipeline.py:   76: epoch [67/200], loss:0.2201
+[08/18 00:04:42][INFO] MMR_pipeline.py:   76: epoch [68/200], loss:0.2192
+[08/18 00:04:53][INFO] MMR_pipeline.py:   76: epoch [69/200], loss:0.2187
+[08/18 00:05:03][INFO] MMR_pipeline.py:   76: epoch [70/200], loss:0.2180
+[08/18 00:05:13][INFO] MMR_pipeline.py:   76: epoch [71/200], loss:0.2187
+[08/18 00:05:24][INFO] MMR_pipeline.py:   76: epoch [72/200], loss:0.2165
+[08/18 00:05:34][INFO] MMR_pipeline.py:   76: epoch [73/200], loss:0.2157
+[08/18 00:05:45][INFO] MMR_pipeline.py:   76: epoch [74/200], loss:0.2151
+[08/18 00:05:55][INFO] MMR_pipeline.py:   76: epoch [75/200], loss:0.2140
+[08/18 00:06:05][INFO] MMR_pipeline.py:   76: epoch [76/200], loss:0.2148
+[08/18 00:06:16][INFO] MMR_pipeline.py:   76: epoch [77/200], loss:0.2133
+[08/18 00:06:26][INFO] MMR_pipeline.py:   76: epoch [78/200], loss:0.2135
+[08/18 00:06:37][INFO] MMR_pipeline.py:   76: epoch [79/200], loss:0.2122
+[08/18 00:06:47][INFO] MMR_pipeline.py:   76: epoch [80/200], loss:0.2111
+[08/18 00:06:58][INFO] MMR_pipeline.py:   76: epoch [81/200], loss:0.2120
+[08/18 00:07:08][INFO] MMR_pipeline.py:   76: epoch [82/200], loss:0.2109
+[08/18 00:07:18][INFO] MMR_pipeline.py:   76: epoch [83/200], loss:0.2104
+[08/18 00:07:28][INFO] MMR_pipeline.py:   76: epoch [84/200], loss:0.2094
+[08/18 00:07:39][INFO] MMR_pipeline.py:   76: epoch [85/200], loss:0.2095
+[08/18 00:07:49][INFO] MMR_pipeline.py:   76: epoch [86/200], loss:0.2093
+[08/18 00:07:59][INFO] MMR_pipeline.py:   76: epoch [87/200], loss:0.2085
+[08/18 00:08:10][INFO] MMR_pipeline.py:   76: epoch [88/200], loss:0.2091
+[08/18 00:08:20][INFO] MMR_pipeline.py:   76: epoch [89/200], loss:0.2083
+[08/18 00:08:32][INFO] MMR_pipeline.py:   76: epoch [90/200], loss:0.2076
+[08/18 00:08:42][INFO] MMR_pipeline.py:   76: epoch [91/200], loss:0.2068
+[08/18 00:08:52][INFO] MMR_pipeline.py:   76: epoch [92/200], loss:0.2062
+[08/18 00:09:03][INFO] MMR_pipeline.py:   76: epoch [93/200], loss:0.2061
+[08/18 00:09:13][INFO] MMR_pipeline.py:   76: epoch [94/200], loss:0.2055
+[08/18 00:09:23][INFO] MMR_pipeline.py:   76: epoch [95/200], loss:0.2055
+[08/18 00:09:34][INFO] MMR_pipeline.py:   76: epoch [96/200], loss:0.2045
+[08/18 00:09:44][INFO] MMR_pipeline.py:   76: epoch [97/200], loss:0.2051
+[08/18 00:09:54][INFO] MMR_pipeline.py:   76: epoch [98/200], loss:0.2050
+[08/18 00:10:05][INFO] MMR_pipeline.py:   76: epoch [99/200], loss:0.2042
+[08/18 00:10:05][INFO] MMR_pipeline.py:   49: current lr is 0.00100
+[08/18 00:10:15][INFO] MMR_pipeline.py:   76: epoch [100/200], loss:0.2038
+[08/18 00:10:25][INFO] MMR_pipeline.py:   76: epoch [101/200], loss:0.2044
+[08/18 00:10:36][INFO] MMR_pipeline.py:   76: epoch [102/200], loss:0.2025
+[08/18 00:10:46][INFO] MMR_pipeline.py:   76: epoch [103/200], loss:0.2029
+[08/18 00:10:56][INFO] MMR_pipeline.py:   76: epoch [104/200], loss:0.2021
+[08/18 00:11:06][INFO] MMR_pipeline.py:   76: epoch [105/200], loss:0.2025
+[08/18 00:11:16][INFO] MMR_pipeline.py:   76: epoch [106/200], loss:0.2019
+[08/18 00:11:27][INFO] MMR_pipeline.py:   76: epoch [107/200], loss:0.2014
+[08/18 00:11:37][INFO] MMR_pipeline.py:   76: epoch [108/200], loss:0.2002
+[08/18 00:11:47][INFO] MMR_pipeline.py:   76: epoch [109/200], loss:0.2014
+[08/18 00:11:58][INFO] MMR_pipeline.py:   76: epoch [110/200], loss:0.1999
+[08/18 00:12:08][INFO] MMR_pipeline.py:   76: epoch [111/200], loss:0.2001
+[08/18 00:12:19][INFO] MMR_pipeline.py:   76: epoch [112/200], loss:0.2000
+[08/18 00:12:29][INFO] MMR_pipeline.py:   76: epoch [113/200], loss:0.1999
+[08/18 00:12:39][INFO] MMR_pipeline.py:   76: epoch [114/200], loss:0.1996
+[08/18 00:12:50][INFO] MMR_pipeline.py:   76: epoch [115/200], loss:0.1983
+[08/18 00:13:00][INFO] MMR_pipeline.py:   76: epoch [116/200], loss:0.1985
+[08/18 00:13:10][INFO] MMR_pipeline.py:   76: epoch [117/200], loss:0.1973
+[08/18 00:13:21][INFO] MMR_pipeline.py:   76: epoch [118/200], loss:0.1982
+[08/18 00:13:31][INFO] MMR_pipeline.py:   76: epoch [119/200], loss:0.1977
+[08/18 00:13:41][INFO] MMR_pipeline.py:   76: epoch [120/200], loss:0.1934
+[08/18 00:13:51][INFO] MMR_pipeline.py:   76: epoch [121/200], loss:0.1894
+[08/18 00:14:01][INFO] MMR_pipeline.py:   76: epoch [122/200], loss:0.1882
+[08/18 00:14:12][INFO] MMR_pipeline.py:   76: epoch [123/200], loss:0.1873
+[08/18 00:14:22][INFO] MMR_pipeline.py:   76: epoch [124/200], loss:0.1866
+[08/18 00:14:32][INFO] MMR_pipeline.py:   76: epoch [125/200], loss:0.1866
+[08/18 00:14:42][INFO] MMR_pipeline.py:   76: epoch [126/200], loss:0.1858
+[08/18 00:14:53][INFO] MMR_pipeline.py:   76: epoch [127/200], loss:0.1850
+[08/18 00:15:03][INFO] MMR_pipeline.py:   76: epoch [128/200], loss:0.1847
+[08/18 00:15:14][INFO] MMR_pipeline.py:   76: epoch [129/200], loss:0.1849
+[08/18 00:15:24][INFO] MMR_pipeline.py:   76: epoch [130/200], loss:0.1845
+[08/18 00:15:34][INFO] MMR_pipeline.py:   76: epoch [131/200], loss:0.1843
+[08/18 00:15:44][INFO] MMR_pipeline.py:   76: epoch [132/200], loss:0.1839
+[08/18 00:15:54][INFO] MMR_pipeline.py:   76: epoch [133/200], loss:0.1840
+[08/18 00:16:05][INFO] MMR_pipeline.py:   76: epoch [134/200], loss:0.1834
+[08/18 00:16:15][INFO] MMR_pipeline.py:   76: epoch [135/200], loss:0.1835
+[08/18 00:16:25][INFO] MMR_pipeline.py:   76: epoch [136/200], loss:0.1841
+[08/18 00:16:35][INFO] MMR_pipeline.py:   76: epoch [137/200], loss:0.1824
+[08/18 00:16:45][INFO] MMR_pipeline.py:   76: epoch [138/200], loss:0.1836
+[08/18 00:16:56][INFO] MMR_pipeline.py:   76: epoch [139/200], loss:0.1833
+[08/18 00:17:06][INFO] MMR_pipeline.py:   76: epoch [140/200], loss:0.1831
+[08/18 00:17:17][INFO] MMR_pipeline.py:   76: epoch [141/200], loss:0.1831
+[08/18 00:17:27][INFO] MMR_pipeline.py:   76: epoch [142/200], loss:0.1827
+[08/18 00:17:37][INFO] MMR_pipeline.py:   76: epoch [143/200], loss:0.1826
+[08/18 00:17:47][INFO] MMR_pipeline.py:   76: epoch [144/200], loss:0.1827
+[08/18 00:17:57][INFO] MMR_pipeline.py:   76: epoch [145/200], loss:0.1828
+[08/18 00:18:08][INFO] MMR_pipeline.py:   76: epoch [146/200], loss:0.1823
+[08/18 00:18:19][INFO] MMR_pipeline.py:   76: epoch [147/200], loss:0.1814
+[08/18 00:18:29][INFO] MMR_pipeline.py:   76: epoch [148/200], loss:0.1822
+[08/18 00:18:40][INFO] MMR_pipeline.py:   76: epoch [149/200], loss:0.1817
+[08/18 00:18:40][INFO] MMR_pipeline.py:   49: current lr is 0.00010
+[08/18 00:18:50][INFO] MMR_pipeline.py:   76: epoch [150/200], loss:0.1819
+[08/18 00:19:00][INFO] MMR_pipeline.py:   76: epoch [151/200], loss:0.1819
+[08/18 00:19:10][INFO] MMR_pipeline.py:   76: epoch [152/200], loss:0.1815
+[08/18 00:19:20][INFO] MMR_pipeline.py:   76: epoch [153/200], loss:0.1813
+[08/18 00:19:31][INFO] MMR_pipeline.py:   76: epoch [154/200], loss:0.1821
+[08/18 00:19:41][INFO] MMR_pipeline.py:   76: epoch [155/200], loss:0.1811
+[08/18 00:19:51][INFO] MMR_pipeline.py:   76: epoch [156/200], loss:0.1811
+[08/18 00:20:02][INFO] MMR_pipeline.py:   76: epoch [157/200], loss:0.1820
+[08/18 00:20:12][INFO] MMR_pipeline.py:   76: epoch [158/200], loss:0.1808
+[08/18 00:20:23][INFO] MMR_pipeline.py:   76: epoch [159/200], loss:0.1807
+[08/18 00:20:33][INFO] MMR_pipeline.py:   76: epoch [160/200], loss:0.1800
+[08/18 00:20:44][INFO] MMR_pipeline.py:   76: epoch [161/200], loss:0.1803
+[08/18 00:20:54][INFO] MMR_pipeline.py:   76: epoch [162/200], loss:0.1804
+[08/18 00:21:05][INFO] MMR_pipeline.py:   76: epoch [163/200], loss:0.1803
+[08/18 00:21:16][INFO] MMR_pipeline.py:   76: epoch [164/200], loss:0.1805
+[08/18 00:21:26][INFO] MMR_pipeline.py:   76: epoch [165/200], loss:0.1804
+[08/18 00:21:36][INFO] MMR_pipeline.py:   76: epoch [166/200], loss:0.1803
+[08/18 00:21:46][INFO] MMR_pipeline.py:   76: epoch [167/200], loss:0.1800
+[08/18 00:21:56][INFO] MMR_pipeline.py:   76: epoch [168/200], loss:0.1801
+[08/18 00:22:07][INFO] MMR_pipeline.py:   76: epoch [169/200], loss:0.1802
+[08/18 00:22:17][INFO] MMR_pipeline.py:   76: epoch [170/200], loss:0.1796
+[08/18 00:22:27][INFO] MMR_pipeline.py:   76: epoch [171/200], loss:0.1808
+[08/18 00:22:37][INFO] MMR_pipeline.py:   76: epoch [172/200], loss:0.1797
+[08/18 00:22:47][INFO] MMR_pipeline.py:   76: epoch [173/200], loss:0.1794
+[08/18 00:22:57][INFO] MMR_pipeline.py:   76: epoch [174/200], loss:0.1797
+[08/18 00:23:08][INFO] MMR_pipeline.py:   76: epoch [175/200], loss:0.1797
+[08/18 00:23:18][INFO] MMR_pipeline.py:   76: epoch [176/200], loss:0.1796
+[08/18 00:23:28][INFO] MMR_pipeline.py:   76: epoch [177/200], loss:0.1793
+[08/18 00:23:39][INFO] MMR_pipeline.py:   76: epoch [178/200], loss:0.1789
+[08/18 00:23:49][INFO] MMR_pipeline.py:   76: epoch [179/200], loss:0.1796
+[08/18 00:23:59][INFO] MMR_pipeline.py:   76: epoch [180/200], loss:0.1796
+[08/18 00:24:09][INFO] MMR_pipeline.py:   76: epoch [181/200], loss:0.1795
+[08/18 00:24:20][INFO] MMR_pipeline.py:   76: epoch [182/200], loss:0.1800
+[08/18 00:24:29][INFO] MMR_pipeline.py:   76: epoch [183/200], loss:0.1792
+[08/18 00:24:40][INFO] MMR_pipeline.py:   76: epoch [184/200], loss:0.1793
+[08/18 00:24:50][INFO] MMR_pipeline.py:   76: epoch [185/200], loss:0.1795
+[08/18 00:25:00][INFO] MMR_pipeline.py:   76: epoch [186/200], loss:0.1796
+[08/18 00:25:10][INFO] MMR_pipeline.py:   76: epoch [187/200], loss:0.1794
+[08/18 00:25:21][INFO] MMR_pipeline.py:   76: epoch [188/200], loss:0.1800
+[08/18 00:25:31][INFO] MMR_pipeline.py:   76: epoch [189/200], loss:0.1792
+[08/18 00:25:41][INFO] MMR_pipeline.py:   76: epoch [190/200], loss:0.1795
+[08/18 00:25:52][INFO] MMR_pipeline.py:   76: epoch [191/200], loss:0.1792
+[08/18 00:26:02][INFO] MMR_pipeline.py:   76: epoch [192/200], loss:0.1805
+[08/18 00:26:13][INFO] MMR_pipeline.py:   76: epoch [193/200], loss:0.1795
+[08/18 00:26:23][INFO] MMR_pipeline.py:   76: epoch [194/200], loss:0.1795
+[08/18 00:26:33][INFO] MMR_pipeline.py:   76: epoch [195/200], loss:0.1800
+[08/18 00:26:43][INFO] MMR_pipeline.py:   76: epoch [196/200], loss:0.1792
+[08/18 00:26:54][INFO] MMR_pipeline.py:   76: epoch [197/200], loss:0.1795
+[08/18 00:27:04][INFO] MMR_pipeline.py:   76: epoch [198/200], loss:0.1794
+[08/18 00:27:14][INFO] MMR_pipeline.py:   76: epoch [199/200], loss:0.1790
+[08/18 00:27:14][INFO] MMR_pipeline.py:   49: current lr is 0.00001
+[08/18 00:27:25][INFO] MMR_pipeline.py:   76: epoch [200/200], loss:0.1793
+[08/18 00:27:25][INFO] train.py:  110: current domain shift mode is same!
+[08/18 00:27:25][INFO] train.py:  115: current test individual_dataloader is aebad_S_AeBAD_S.
+[08/18 00:27:25][INFO] train.py:  116: the test data in current individual_dataloader aebad_S_AeBAD_S are 689.
+[08/18 00:27:25][INFO] train.py:  118: Computing evaluation metrics.
+[08/18 00:30:39][INFO] common.py:  254: image save complete!
+[08/18 00:30:40][INFO] train.py:  140: aebad_S_AeBAD_S's Image_Level AUROC is 85.800000.%
+[08/18 00:30:40][INFO] train.py:  143: aebad_S_AeBAD_S's Full_Pixel_Level AUROC is 93.170635.%
+[08/18 00:30:40][INFO] train.py:  147: aebad_S_AeBAD_S's per-region-overlap (PRO) AUROC is 89.600000.%
+[08/18 00:30:40][INFO] train.py:  110: current domain shift mode is background!
+[08/18 00:30:40][INFO] train.py:  115: current test individual_dataloader is aebad_S_AeBAD_S.
+[08/18 00:30:40][INFO] train.py:  116: the test data in current individual_dataloader aebad_S_AeBAD_S are 305.
+[08/18 00:30:40][INFO] train.py:  118: Computing evaluation metrics.
+[08/18 00:32:13][INFO] common.py:  254: image save complete!
+[08/18 00:32:13][INFO] train.py:  140: aebad_S_AeBAD_S's Image_Level AUROC is 81.700000.%
+[08/18 00:32:13][INFO] train.py:  143: aebad_S_AeBAD_S's Full_Pixel_Level AUROC is 86.445639.%
+[08/18 00:32:13][INFO] train.py:  147: aebad_S_AeBAD_S's per-region-overlap (PRO) AUROC is 89.600000.%
+[08/18 00:32:13][INFO] train.py:  110: current domain shift mode is illumination!
+[08/18 00:32:13][INFO] train.py:  115: current test individual_dataloader is aebad_S_AeBAD_S.
+[08/18 00:32:13][INFO] train.py:  116: the test data in current individual_dataloader aebad_S_AeBAD_S are 273.
+[08/18 00:32:13][INFO] train.py:  118: Computing evaluation metrics.
+[08/18 00:33:40][INFO] common.py:  254: image save complete!
+[08/18 00:33:41][INFO] train.py:  140: aebad_S_AeBAD_S's Image_Level AUROC is 89.600000.%
+[08/18 00:33:41][INFO] train.py:  143: aebad_S_AeBAD_S's Full_Pixel_Level AUROC is 92.729806.%
+[08/18 00:33:41][INFO] train.py:  147: aebad_S_AeBAD_S's per-region-overlap (PRO) AUROC is 90.300000.%
+[08/18 00:33:41][INFO] train.py:  110: current domain shift mode is view!
+[08/18 00:33:41][INFO] train.py:  115: current test individual_dataloader is aebad_S_AeBAD_S.
+[08/18 00:33:41][INFO] train.py:  116: the test data in current individual_dataloader aebad_S_AeBAD_S are 372.
+[08/18 00:33:41][INFO] train.py:  118: Computing evaluation metrics.
+[08/18 00:35:36][INFO] common.py:  254: image save complete!
+[08/18 00:35:36][INFO] train.py:  140: aebad_S_AeBAD_S's Image_Level AUROC is 79.600000.%
+[08/18 00:35:36][INFO] train.py:  143: aebad_S_AeBAD_S's Full_Pixel_Level AUROC is 88.673377.%
+[08/18 00:35:36][INFO] train.py:  147: aebad_S_AeBAD_S's per-region-overlap (PRO) AUROC is 86.400000.%
+[08/18 00:35:36][INFO] train.py:  150: Method training phase complete!
+[08/18 00:35:36][INFO] train.py:  153: Mean AUROC is 84.175000.%
+[08/18 00:35:36][INFO] train.py:  153: Mean Pixel-AUROC is 90.254864.%
+[08/18 00:35:36][INFO] train.py:  153: Mean per-region-overlap (PRO) is 88.975000.%
+[08/18 00:35:36][INFO] main.py:   43: Main function complete!

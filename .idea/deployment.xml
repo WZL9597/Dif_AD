@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="root@region-8.autodl.pro:45927" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="IReVKBZsZq@sftp1.virtaicloud.com:19001">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@region-8.autodl.pro:45927">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/root/MMR" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@region-8.seetacloud.com:13147">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/root/MMR" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
