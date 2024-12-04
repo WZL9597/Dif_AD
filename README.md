@@ -1,4 +1,5 @@
 # Dif_AD
+<<<<<<< HEAD
 基于图像重建的工业缺陷检测demo
 
 ## 用户登录界面
@@ -12,3 +13,6 @@
 ## 检测展示界面
 
 ![image-20241205000334854](C:\Users\wzl_9\AppData\Roaming\Typora\typora-user-images\image-20241205000334854.png)
+=======
+DEMO基于图像重建的工业缺陷检测
+>>>>>>> 6a5908f7be1876d97841a8da8670c7359a5fe137
