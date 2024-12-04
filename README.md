@@ -1,18 +1,15 @@
 # Dif_AD
 <<<<<<< HEAD
-基于图像重建的工业缺陷检测demo
+基于图像重建的工业缺陷检测demo1.0
 
 ## 用户登录界面
 
-![image-20241205000244787](C:\Users\wzl_9\AppData\Roaming\Typora\typora-user-images\image-20241205000244787.png)
+![image-user](assets/image/user.png)
 
 ## 主界面
 
-![image-20241205000310637](C:\Users\wzl_9\AppData\Roaming\Typora\typora-user-images\image-20241205000310637.png)
+![image-home](assets/image/home.png)
 
 ## 检测展示界面
 
-![image-20241205000334854](C:\Users\wzl_9\AppData\Roaming\Typora\typora-user-images\image-20241205000334854.png)
-=======
-DEMO基于图像重建的工业缺陷检测
->>>>>>> 6a5908f7be1876d97841a8da8670c7359a5fe137
+![image-defect](assets/image/defect.png)
