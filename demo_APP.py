@@ -70,17 +70,19 @@ class DefectDetectionApp(QMainWindow):
 
         # 输入图片部分
         self.input_layout = QVBoxLayout()
+        self.input_layout.setAlignment(Qt.AlignCenter)  # 确保输入布局整体居中
+
         self.input_image_label = QLabel(self)
-        self.input_image_label.setAlignment(Qt.AlignCenter)
+        self.input_image_label.setAlignment(Qt.AlignCenter)  # 确保图片居中
         self.input_image_label.setFixedSize(400, 400)
         self.input_image_label.setStyleSheet("border: 1px solid gray;")
         self.input_image_label.setText("选择图片")
         self.input_image_label.setFont(QFont("Arial", 14))
-        self.input_image_label.setAlignment(Qt.AlignCenter)
+        self.input_image_label.setAlignment(Qt.AlignCenter)  # 确保文本居中
         self.input_image_label.mousePressEvent = self.select_image  # 点击图片选择文件
 
         self.input_label = QLabel("输入图片", self)
-        self.input_label.setAlignment(Qt.AlignCenter)
+        self.input_label.setAlignment(Qt.AlignCenter)  # 确保标题居中
         self.input_label.setFont(QFont("Arial", 14))
 
         self.input_layout.addWidget(self.input_image_label)
@@ -112,22 +114,24 @@ class DefectDetectionApp(QMainWindow):
         self.output_layout.addLayout(self.output_grid_layout)
 
         # 检测按钮和模型选择框
-        self.control_layout = QHBoxLayout()
+        self.control_layout = QVBoxLayout()  # 使用垂直布局
+        self.control_layout.setAlignment(Qt.AlignCenter)  # 设置居中对齐
+
         self.detect_button = QPushButton("检测")
-        self.detect_button.setFixedSize(300, 150)
+        self.detect_button.setFixedSize(300, 150)  # 设置按钮高度固定，宽度与模型选择框相同
         self.detect_button.setStyleSheet(
             "border-radius: 75px; font-size: 32px; background-color: lightblue;"
         )
         self.detect_button.clicked.connect(self.detect_defect)
 
         self.model_select = QComboBox()
-        self.model_select.setFixedSize(300, 50)
+        self.model_select.setFixedSize(300, 50)  # 设置下拉框宽度与按钮相同
         self.model_select.setFont(QFont("Arial", 14))
         self.model_select.addItems(["模型1", "模型2", "模型3"])
         self.model_select.setStyleSheet("font-size: 16px;")
 
-        self.control_layout.addWidget(self.detect_button)
-        self.control_layout.addWidget(self.model_select)
+        self.control_layout.addWidget(self.detect_button)  # 检测按钮放在上面
+        self.control_layout.addWidget(self.model_select)   # 模型选择框放在下面
 
         # 状态灯和检测时长
         self.status_layout = QHBoxLayout()
@@ -152,10 +156,12 @@ class DefectDetectionApp(QMainWindow):
         # 主布局
         main_layout.addLayout(self.input_layout)
         main_layout.addLayout(self.output_layout)
-        main_layout.addLayout(self.control_layout)
+        main_layout.addLayout(self.control_layout)  # 放入垂直布局
         main_layout.addLayout(self.status_layout)
 
         self.selected_image_path = None
+
+
 
     def select_image(self, event):
         options = QFileDialog.Options()
