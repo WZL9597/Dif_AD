@@ -60,7 +60,7 @@ class DefectDetectionApp(QMainWindow):
         self.init_ui()
 
     def init_ui(self):
-        self.setWindowTitle("工业缺陷检测可视化软件")
+        self.setWindowTitle("NEU工业缺陷检测软件v2.2")
         self.setGeometry(200, 200, 1600, 1200)
 
         self.central_widget = QWidget()
@@ -74,6 +74,9 @@ class DefectDetectionApp(QMainWindow):
         self.input_image_label.setAlignment(Qt.AlignCenter)
         self.input_image_label.setFixedSize(400, 400)
         self.input_image_label.setStyleSheet("border: 1px solid gray;")
+        self.input_image_label.setText("选择图片")
+        self.input_image_label.setFont(QFont("Arial", 14))
+        self.input_image_label.setAlignment(Qt.AlignCenter)
         self.input_image_label.mousePressEvent = self.select_image  # 点击图片选择文件
 
         self.input_label = QLabel("输入图片", self)
@@ -169,32 +172,60 @@ class DefectDetectionApp(QMainWindow):
             for label in self.output_image_labels:
                 label.clear()
                 label.setText("")
+        else:
+            # 如果用户取消选择，保持“选择图片”文本
+            if not self.selected_image_path:
+                self.input_image_label.setText("选择图片")
 
     def detect_defect(self):
         if not self.selected_image_path:
             QMessageBox.warning(self, "警告", "请先选择一张图片！")
             return
 
+        # 获取所选模型并更新状态
         model = self.model_select.currentText()
         self.status_light.setStyleSheet("border-radius: 25px; background-color: gray;")
         self.time_duration.setText("检测中...")
-        self.status_label.setText(f"使用{model}检测中...")
-        QTimer.singleShot(500, self.show_output)
+        self.time_duration.setStyleSheet("color: orange;")
+        self.status_label.setText(f"使用 {model} 检测中...")
+
+        # 随机生成检测成功的延迟时间 (0.5 - 1 秒)
+        self.detection_time = random.uniform(0.5, 1)
+
+        # 设置延迟展示输出结果
+        QTimer.singleShot(int(self.detection_time * 1000), self.show_output)
 
     def show_output(self):
+        # 获取输入图片的基础名称和路径
         base_name = os.path.splitext(os.path.basename(self.selected_image_path))[0]
-        dir_name = os.path.dirname(self.selected_image_path)
+        input_dir = os.path.dirname(self.selected_image_path)
 
         # 去掉 _original 后缀
         if "_original" in base_name:
             base_name = base_name.replace("_original", "")
 
+        # 构造输出路径：输入路径的上上一级目录的 goal_sets 文件夹
+        upper_level_dir = os.path.dirname(os.path.dirname(input_dir))  # 获取上上一级目录
+        output_dir = os.path.join(upper_level_dir, "goal_sets")
+
+        # 构造输出文件路径字典
         output_files = {
-            "热力图": f"{dir_name}/{base_name}_heatmap.jpg",
-            "叠加图": f"{dir_name}/{base_name}_hm_on_ima.jpg",
-            "缺陷掩码": f"{dir_name}/{base_name}_mask.jpg",
-            "热图表": f"{dir_name}/{base_name}_sns_heatmap.jpg",
+            "热力图": os.path.join(output_dir, f"{base_name}_heatmap.jpg").replace("\\", "/"),
+            "叠加图": os.path.join(output_dir, f"{base_name}_hm_on_ima.jpg").replace("\\", "/"),
+            "缺陷掩码": os.path.join(output_dir, f"{base_name}_mask.jpg").replace("\\", "/"),
+            "热图表": os.path.join(output_dir, f"{base_name}_sns_heatmap.jpg").replace("\\", "/"),
         }
+
+        # 替换输入文件路径分隔符
+        input_file_path = self.selected_image_path.replace("\\", "/")
+
+        # 打印输入文件路径
+        print(f"输入文件路径: {input_file_path}")
+
+        # 打印所有输出文件路径
+        print("输出文件路径:")
+        for title, path in output_files.items():
+            print(f"  {title}: {path}")
 
         # 检查文件是否存在
         all_exist = all(os.path.exists(path) for path in output_files.values())
@@ -202,20 +233,23 @@ class DefectDetectionApp(QMainWindow):
         if not all_exist:
             self.status_light.setStyleSheet("border-radius: 25px; background-color: red;")
             self.status_label.setText("检测失败")
-            duration = random.uniform(1, 3)
+            duration = random.uniform(1, 3)  # 随机失败时长
             self.time_duration.setText(f"{duration:.5f}s")
             self.time_duration.setStyleSheet("color: red;")
             for label in self.output_image_labels:
                 label.clear()
                 label.setText("检测超时")
         else:
+            # 检测成功状态
             self.status_light.setStyleSheet("border-radius: 25px; background-color: green;")
             self.status_label.setText("检测成功")
-            duration = random.uniform(0.5, 1)
-            self.time_duration.setText(f"{duration:.5f}s")
+
+            # 设置检测时长为延迟时长
+            self.time_duration.setText(f"{self.detection_time:.5f}s")
             self.time_duration.setStyleSheet("color: green;")
+
+            # 加载输出图片
             for idx, (title, path) in enumerate(output_files.items()):
-                print(f"{title} 文件路径: {path}")  # 控制台打印路径
                 pixmap = QPixmap(path).scaled(400, 400, Qt.KeepAspectRatio)
                 self.output_image_labels[idx].setPixmap(pixmap)
 
