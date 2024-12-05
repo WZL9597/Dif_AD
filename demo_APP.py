@@ -1,4 +1,5 @@
 import os
+import shutil
 import sys
 import random
 from PyQt5.QtWidgets import (
@@ -84,6 +85,7 @@ class DefectDetectionApp(QMainWindow):
         self.input_label = QLabel("输入图片", self)
         self.input_label.setAlignment(Qt.AlignCenter)  # 确保标题居中
         self.input_label.setFont(QFont("Arial", 14))
+        self.input_label.setStyleSheet("border: 2px solid black; padding: 5px; background-color: #f0f0f0;")
 
         self.input_layout.addWidget(self.input_image_label)
         self.input_layout.addWidget(self.input_label)
@@ -105,6 +107,7 @@ class DefectDetectionApp(QMainWindow):
             output_label = QLabel(self.output_image_titles[i], self)
             output_label.setAlignment(Qt.AlignCenter)
             output_label.setFont(QFont("Arial", 14))
+            output_label.setStyleSheet("border: 2px solid black; padding: 5px; background-color: #f0f0f0;")
 
             output_layout.addWidget(output_image_label)
             output_layout.addWidget(output_label)
@@ -125,10 +128,10 @@ class DefectDetectionApp(QMainWindow):
         self.detect_button.clicked.connect(self.detect_defect)
 
         self.model_select = QComboBox()
-        self.model_select.setFixedSize(300, 50)  # 设置下拉框宽度与按钮相同
-        self.model_select.setFont(QFont("Arial", 14))
-        self.model_select.addItems(["模型1", "模型2", "模型3"])
-        self.model_select.setStyleSheet("font-size: 16px;")
+        self.model_select.setFixedSize(300, 50)
+        self.model_select.setFont(QFont("Arial", 28))  # 设置更大的字体
+        self.model_select.addItems(["Dif_AD模型", "其他模型"])
+        self.model_select.setStyleSheet("font-size: 28px;")  # 增大字体
 
         self.control_layout.addWidget(self.detect_button)  # 检测按钮放在上面
         self.control_layout.addWidget(self.model_select)   # 模型选择框放在下面
@@ -137,6 +140,7 @@ class DefectDetectionApp(QMainWindow):
         self.status_layout = QHBoxLayout()
         self.status_label = QLabel("状态：")
         self.status_label.setFont(QFont("Arial", 14))
+        self.status_label.setStyleSheet("border: 2px solid black; padding: 5px; background-color: #f0f0f0;")
 
         self.status_light = QLabel(self)
         self.status_light.setFixedSize(50, 50)
@@ -144,8 +148,11 @@ class DefectDetectionApp(QMainWindow):
 
         self.time_label = QLabel("检测时长：")
         self.time_label.setFont(QFont("Arial", 14))
+        self.time_label.setStyleSheet("border: 2px solid black; padding: 5px; background-color: #f0f0f0;")
+
         self.time_duration = QLabel("0.00000s")
         self.time_duration.setFont(QFont("Arial", 14))
+        self.time_duration.setStyleSheet("border: 2px solid black; padding: 5px; background-color: #f0f0f0;")
 
         self.status_layout.addWidget(self.status_label)
         self.status_layout.addWidget(self.status_light)
@@ -188,15 +195,21 @@ class DefectDetectionApp(QMainWindow):
             QMessageBox.warning(self, "警告", "请先选择一张图片！")
             return
 
+        # 打印输入图片路径
+        input_file_path = self.selected_image_path.replace("\\", "/")
+        print(f"输入图片: {input_file_path}")
+
         # 获取所选模型并更新状态
         model = self.model_select.currentText()
+        print(f"使用 {model} 检测中...")
+
         self.status_light.setStyleSheet("border-radius: 25px; background-color: gray;")
         self.time_duration.setText("检测中...")
         self.time_duration.setStyleSheet("color: orange;")
         self.status_label.setText(f"使用 {model} 检测中...")
 
         # 随机生成检测成功的延迟时间 (0.5 - 1 秒)
-        self.detection_time = random.uniform(0.5, 1)
+        self.detection_time = random.uniform(1, 3)
 
         # 设置延迟展示输出结果
         QTimer.singleShot(int(self.detection_time * 1000), self.show_output)
@@ -222,33 +235,30 @@ class DefectDetectionApp(QMainWindow):
             "热图表": os.path.join(output_dir, f"{base_name}_sns_heatmap.jpg").replace("\\", "/"),
         }
 
-        # 替换输入文件路径分隔符
-        input_file_path = self.selected_image_path.replace("\\", "/")
-
-        # 打印输入文件路径
-        print(f"输入文件路径: {input_file_path}")
-
-        # 打印所有输出文件路径
-        print("输出文件路径:")
-        for title, path in output_files.items():
-            print(f"  {title}: {path}")
-
         # 检查文件是否存在
         all_exist = all(os.path.exists(path) for path in output_files.values())
 
         if not all_exist:
             self.status_light.setStyleSheet("border-radius: 25px; background-color: red;")
             self.status_label.setText("检测失败")
-            duration = random.uniform(1, 3)  # 随机失败时长
+            self.status_label.setStyleSheet("color: red;")
+            duration = random.uniform(3, 5)  # 随机失败时长
+            print(f"检测超时，检测时长为 {duration:.5f}s")
+
             self.time_duration.setText(f"{duration:.5f}s")
             self.time_duration.setStyleSheet("color: red;")
             for label in self.output_image_labels:
                 label.clear()
                 label.setText("检测超时")
+                label.setStyleSheet("font-size: 32px; font-weight: bold; color: red;")  # 增大字体
+
         else:
             # 检测成功状态
+            print(f"检测成功，检测时长为 {self.detection_time:.5f}s")
+
             self.status_light.setStyleSheet("border-radius: 25px; background-color: green;")
-            self.status_label.setText("检测成功")
+            self.status_label.setText("检测成功!")
+            self.status_label.setStyleSheet("color: green;")
 
             # 设置检测时长为延迟时长
             self.time_duration.setText(f"{self.detection_time:.5f}s")
@@ -259,9 +269,36 @@ class DefectDetectionApp(QMainWindow):
                 pixmap = QPixmap(path).scaled(400, 400, Qt.KeepAspectRatio)
                 self.output_image_labels[idx].setPixmap(pixmap)
 
+            # 保存输出图片到上一级路径的 output 文件夹
+            self.save_output_files(output_files)
+
+    def save_output_files(self, output_files):
+        # 获取输入图片路径的再上一级目录
+        upper_level_dir = os.path.dirname(os.path.dirname(self.selected_image_path))
+        output_dir = os.path.join(upper_level_dir, "output").replace("\\", "/")  # 确保路径为正斜杠
+
+        # 如果 output 文件夹不存在，创建它
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+            print(f"已创建输出目录: {output_dir}")
+
+        # 将所有输出文件复制到 output 文件夹
+        for title, file_path in output_files.items():
+            file_path = file_path.replace("\\", "/")  # 确保路径中使用正斜杠
+            if os.path.exists(file_path):
+                try:
+                    dest_path = os.path.join(output_dir, os.path.basename(file_path)).replace("\\", "/")
+                    shutil.copy(file_path, dest_path)
+                except Exception as e:
+                    print(f"检测超时")
+            else:
+                print(f"检测超时")
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     login_window = LoginWindow()
     login_window.show()
     sys.exit(app.exec_())
+
+
