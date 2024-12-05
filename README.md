@@ -10,3 +10,9 @@
 ## 检测展示界面
 
 <img src="assets/image/defect.png" alt="image-defect" style="zoom:50%;" />
+
+
+
+## 演示视频
+
+<img src="assets/image/demoshow.gif" alt="image-defect" style="zoom:50%;" />
